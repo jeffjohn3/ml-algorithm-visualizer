@@ -1,5 +1,5 @@
 # ml-algorithm-visualizer
-A visualizer for common machine learning algorithms.  
+A visualizer for some common machine learning algorithms covered in UC Berkeley's CS189: Introduction to Machine Learning course. 
 
 https://jeffjohn3.github.io/ml-algorithm-visualizer/
 
