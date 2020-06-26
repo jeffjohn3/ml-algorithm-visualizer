@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DecisionTree = exports.Logistic = exports.QDA = exports.LDA = void 0;
+exports.RandomTree = exports.DecisionTree = exports.Logistic = exports.QDA = exports.LDA = void 0;
 var utils_1 = require("./utils");
 var math = require("mathjs");
 var tf = require("@tensorflow/tfjs");
@@ -216,4 +216,113 @@ var DecisionTree = /** @class */ (function () {
     return DecisionTree;
 }());
 exports.DecisionTree = DecisionTree;
+var RandomTree = /** @class */ (function () {
+    function RandomTree(maxDepth) {
+        if (maxDepth === void 0) { maxDepth = MAX_DEPTH; }
+        this.maxDepth = maxDepth;
+    }
+    RandomTree.prototype.informationGain = function (X, y, thresh) {
+        var y1 = [], y2 = [];
+        for (var i = 0; i < X.length; i++) {
+            if (X[i] < thresh) {
+                y1.push(y[i]);
+            }
+            else {
+                y2.push(y[i]);
+            }
+        }
+        return this.entropy(y) - (y1.length * this.entropy(y1) +
+            y2.length * this.entropy(y2)) / y.length;
+    };
+    RandomTree.prototype.entropy = function (y) {
+        var total = 0;
+        [-1, 1].forEach(function (label) {
+            var count = 0;
+            for (var i = 0; i < y.length; i++) {
+                if (y[i] == label) {
+                    count += 1;
+                }
+            }
+            if (count != 0) {
+                total += (count / y.length) * Math.log2(count / y.length);
+            }
+        });
+        return -total;
+    };
+    RandomTree.prototype.train = function (X, y) {
+        this.X = X;
+        this.y = y;
+        var count = 0;
+        this.y.forEach(function (element) {
+            if (element == 1) {
+                count += 1;
+            }
+        });
+        this.pred = count / y.length;
+        if (this.maxDepth > 0) {
+            // 2D array of thresholds to split on. Shape: (#features x #featureDivisions) 
+            var thresh = [];
+            for (var i = 0; i < X[0].length; i++) {
+                var col_2 = utils_1.getCol(X, i);
+                thresh.push(tf.linspace(Math.min.apply(Math, col_2) + EPS, Math.max.apply(Math, col_2) - EPS, featureDivisions).arraySync());
+            }
+            // 2D of gains for each threshold.  Shape: (#features x #featureDivisions)
+            var gains = [];
+            var f = (Math.random() > .5) ? 1 : 0;
+            for (var feature = 0; feature < X[0].length; feature++) {
+                gains[feature] = [];
+                for (var t = 0; t < thresh[feature].length; t++) {
+                    if (f == feature) {
+                        gains[feature].push(this.informationGain(utils_1.getCol(X, feature), y, thresh[feature][t]));
+                    }
+                    else {
+                        gains[feature].push(0);
+                    }
+                }
+            }
+            var m = utils_1.matArgMax(gains);
+            this.feature = m[0];
+            this.thresh = thresh[m[0]][m[1]];
+            var col = utils_1.getCol(X, m[0]);
+            var X0 = [], X1 = [], y0 = [], y1 = [];
+            for (var i = 0; i < col.length; i++) {
+                if (col[i] < this.thresh) {
+                    X0.push(X[i]);
+                    y0.push(y[i]);
+                }
+                else {
+                    X1.push(X[i]);
+                    y1.push(y[i]);
+                }
+            }
+            if (X0.length > 0 && X1.length > 0) {
+                this.left = new DecisionTree(this.maxDepth - 1);
+                this.left.train(X0, y0);
+                this.right = new DecisionTree(this.maxDepth - 1);
+                this.right.train(X1, y1);
+            }
+            else {
+                this.maxDepth = 0;
+            }
+        }
+    };
+    RandomTree.prototype.classify = function (X) {
+        if (this.maxDepth == 0) {
+            return [this.pred * 2 - 1];
+        }
+        if (X[this.feature] < this.thresh) {
+            return this.left.classify(X);
+        }
+        return this.right.classify(X);
+    };
+    RandomTree.prototype.print = function () {
+        console.log(this.maxDepth, this.pred, this.X.length, this.feature, this.thresh);
+        if (this.maxDepth > 0) {
+            this.left.print();
+            this.right.print();
+        }
+    };
+    return RandomTree;
+}());
+exports.RandomTree = RandomTree;
 //# sourceMappingURL=algorithms.js.map

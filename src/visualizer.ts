@@ -1,7 +1,7 @@
 import * as d3 from "d3"; 
 import {Point, twoGaussians, circle, twoMoons} from "./data";
-import {LDA, QDA, Logistic, DecisionTree} from './algorithms';
-
+import {LDA, QDA, Logistic, DecisionTree, RandomTree} from './algorithms';
+import * as fc from "d3fc"; 
 
 
 // Parameters for dataset svg's.  
@@ -9,8 +9,8 @@ let margin = {top: 0, right: 0, bottom: 0, left: 0},
     width = 150 - margin.left - margin.right,
     height = 150 - margin.top - margin.bottom,
     radius = 3,
-    color1 = 'red',
-    color2 = 'green',
+    color1 = 'MediumBlue',
+    color2 = 'DarkOrange',
     numShades = 30,
     numSamples = 100,
     borderWidth = "1.1%", 
@@ -168,9 +168,10 @@ function svg(points: Point[], gridx, gridy) {
             */
 }
 
+
 function everything(numSamples, noise) {
     let datasets: Point[][] = [twoGaussians(numSamples, noise), circle(numSamples, noise), twoMoons(numSamples, noise)]; 
-    let models = [new LDA(), new QDA(), new Logistic(), new DecisionTree()] 
+    let models = [new LDA(), new QDA(), new Logistic(), new DecisionTree(), new RandomTree()];  
 
     for (let i = 0; i < datasets.length; i++) {
 

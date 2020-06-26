@@ -1,30 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ML Visualizer</title>
+    <meta name="keywords" content="machine, learning, visualizer, linear discriminant analysis, lda, quadratic discriminant analysis, qda, logistic regression, decision tree">
+    <meta name="description" content="A visualizer for some common machine learning algorithms covered in UC Berkeley's CS189: Introduction to Machine Learning course.">
+    <link rel="icon" type="image/png" href="imgs/favicon.png">
+
     <link rel="stylesheet" href="index.css" type="text/css">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-167704928-2"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-167704928-2');
+    </script>
+
 </head>
 <body>
-        
+    <h1 id='title'> Machine Learning Algorithm Visualizer </h1> 
+    <h2 id='description'> A visualizer for some common machine <br> learning algorithms covered in UC Berkeley's <br> CS189: Introduction to Machine Learning course. </h2>
     <div id="container"> 
-    <div class="dataset" title="twoGaussians" id="twoGaussians">
-        <p id="LDA"> Linear Discriminant <br> Analysis (LDA) </p>
-        <p id="QDA"> Quadratic Discriminant Analysis (QDA) </p>
-        <p id="Logistic"> Logistic Regression </p>
-        <p id="Tree"> Decision Tree </p>    
-        <div class="shadow"> </div>
-        <div class="slidersContainer">
 
-            <input type="range" min="0" max="49" value="0" id="noiseSlider">
-            <p>Noise: <span id="noiseValue"></span></p>
-            <input type="range" min="50" max="200" value="50" id="samplesSlider">
-            <p>Samples: <span id="sampleValue"></span></p>
+        <div class="dataset" title="twoGaussians" id="twoGaussians">
+            <h1 id="LDA"> Linear Discriminant <br> Analysis (LDA) </h1>
+            <h1 id="QDA"> Quadratic Discriminant Analysis (QDA) </h1>
+            <h1 id="Logistic"> Logistic Regression </h1>
+            <h1 id="Tree"> Decision Tree </h1>    
+            <h1 id="RandTree"> Random Decision Tree </h1>    
+            <div class="shadow"> </div>
+            <div class="slidersContainer">
+                <h2> Dataset Parameters</h2>
+                <input type="range" min="0" max="49" value="0" id="noiseSlider">
+                <p class="sliderTxt">Noise: <span id="noiseValue"></span></p>
+                <input type="range" min="50" max="200" value="50" id="samplesSlider">
+                <p class="sliderTxt">Samples: <span id="sampleValue"></span></p>
+            </div>
+        
         </div>
-    
+        <div id="bar"> </div> 
     </div>
-    </div>
+    <p id="footer"> This visualizer was created by Jeffrey Kim, a student studying Electrical Engineering and Computer Science at the University of California, Berkeley. <br> 
+                    It randomly creates 3 datasets using the selected parameters and trains each model on every dataset.  It then generates the corresponding heatmaps using the 
+                    posterior probabilities of each model.  <br> <br> 
+                    Check out the <a href="https://github.com/jeffjohn3/ml-algorithm-visualizer"> source code </a> 
+                    or my other <a href="https://github.com/jeffjohn3"> public github projects</a>! <br> 
+                    Here's also the link to my <a href="https://jeffjohn3.github.io"> personal website</a>!</p>
     
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script> var exports = {}; </script>

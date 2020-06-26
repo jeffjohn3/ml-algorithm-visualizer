@@ -4,7 +4,7 @@ var d3 = require("d3");
 var data_1 = require("./data");
 var algorithms_1 = require("./algorithms");
 // Parameters for dataset svg's.  
-var margin = { top: 0, right: 0, bottom: 0, left: 0 }, width = 150 - margin.left - margin.right, height = 150 - margin.top - margin.bottom, radius = 3, color1 = 'red', color2 = 'green', numShades = 30, numSamples = 100, borderWidth = "1.1%", padding = 0, noise = 0;
+var margin = { top: 0, right: 0, bottom: 0, left: 0 }, width = 150 - margin.left - margin.right, height = 150 - margin.top - margin.bottom, radius = 3, color1 = 'MediumBlue', color2 = 'DarkOrange', numShades = 30, numSamples = 100, borderWidth = "1.1%", padding = 0, noise = 0;
 var DENSITY = 100;
 //Training  
 function train(model, points) {
@@ -144,7 +144,7 @@ function svg(points, gridx, gridy) {
 }
 function everything(numSamples, noise) {
     var datasets = [data_1.twoGaussians(numSamples, noise), data_1.circle(numSamples, noise), data_1.twoMoons(numSamples, noise)];
-    var models = [new algorithms_1.LDA(), new algorithms_1.QDA(), new algorithms_1.Logistic(), new algorithms_1.DecisionTree()];
+    var models = [new algorithms_1.LDA(), new algorithms_1.QDA(), new algorithms_1.Logistic(), new algorithms_1.DecisionTree(), new algorithms_1.RandomTree()];
     for (var i = 0; i < datasets.length; i++) {
         var row = 2;
         var col = 3;
