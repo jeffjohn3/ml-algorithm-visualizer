@@ -23,7 +23,9 @@ body {
     font-size: 20px; 
     margin: 0; 
     padding: 20px 0em 50px 0em; 
-
+    box-shadow: 0 10px 5px -5px rgba(105,105,105, 1); 
+    margin-bottom: 10px; 
+    z-index: 5; 
 }
 
 #twoGaussians {
@@ -43,7 +45,7 @@ body {
 
 #container {
     text-align: center;
-    padding: 30px 0px 60px 0px; 
+    padding: 60px 0px 150px 0px; 
     background-color: GhostWhite; 
 }
 
@@ -75,7 +77,7 @@ body {
 .shadow {
     grid-column: 3/9; 
     grid-row: 2/5; 
-    box-shadow: 0px 4px 4px 4px rgba(105,105,105, 1)
+    box-shadow: 0px 4px 4px 4px rgba(105,105,105, 1);
 }
 
 h2 {
@@ -103,10 +105,14 @@ h2 {
     font-size: 20px; 
     margin: 0; 
     padding: 60px 20% 60px 20%; 
+    box-shadow: 0 -7px 5px -5px rgba(105,105,105, 1); 
+    margin-top: 7px; 
+    z-index: 5; 
+
 }
 a {
     text-decoration: none; 
-    color:#37c; 
+    color:rgb(64, 89, 228); 
 }
 
 a:visited {
