@@ -1,5 +1,5 @@
 node_modules
-*.js
+build
 *.map
 package-lock.json
 Gemfile

@@ -6,8 +6,8 @@
         "url": "https://github.com/jeffjohn3/ml-algorithm-visualizer"
     },
     "scripts": {
-        "build": "browserify src/visualizer.js -o src/bundle.js",
-        "watch": "watchify src/visualizer.js -o src/bundle.js --debug --verbose"
+        "build": "browserify build/visualizer.js -o src/bundle.js",
+        "watch": "watchify build/visualizer.js -o src/bundle.js --debug --verbose"
     },
     "dependencies": {
         "@tensorflow/tfjs": "^2.0.1",
