@@ -5,7 +5,8 @@ body {
 
 #title {
     text-align: center;
-    background-color: DarkSlateGray;  
+    /* color */
+    background-color: #486e9b;  
     font-family: "Verdana", "Lucida Console", sans-serif;
     font-weight: bold;  
     color: white; 
@@ -16,7 +17,8 @@ body {
 }
 #description {
     text-align: center;
-    background-color: DarkSlateGray;  
+    /* color */
+    background-color: #486e9b;  
     font-family: "Lucida Console", "Helvetica","Arial", sans-serif;
     font-weight: normal;  
     color: white; 
@@ -98,7 +100,7 @@ h2 {
 
 #footer {
     text-align: center; 
-    background-color: Gainsboro;  
+    background-color: #d9d9d9;  
     font-family: "Verdana", "Lucida Console", sans-serif;
     font-weight: bold;  
     color: rgb(121, 121, 121); 
