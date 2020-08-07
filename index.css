@@ -24,12 +24,17 @@ body {
     color: white; 
     font-size: 20px; 
     margin: 0; 
-    padding: 20px 0em 50px 0em; 
+    padding: 20px 20% 50px 20%; 
     box-shadow: 0 10px 5px -5px rgba(105,105,105, 1); 
     margin-bottom: 10px; 
     z-index: 5; 
+    text-align: center; 
 }
-
+#description div {
+    text-align: center; 
+    max-width: 600px;
+    margin: 0 auto; 
+}
 #twoGaussians {
     display: grid; 
     grid-gap: 5px; 
