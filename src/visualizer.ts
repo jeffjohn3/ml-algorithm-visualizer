@@ -1,7 +1,9 @@
 import * as d3 from "d3"; 
 import {Point, twoGaussians, circle, twoMoons} from "./data";
-import {LDA, QDA, Logistic, DecisionTree, RandomTree} from './algorithms';
-import * as fc from "d3fc"; 
+import { LDA } from './algorithms/linearDiscriminantAnalysis'; 
+import { QDA } from './algorithms/quadraticDiscriminantAnalysis';
+import { Logistic } from './algorithms/logisticRegression';  
+import { DecisionTree, RandomTree } from './algorithms/decisionTree';  
 
 
 // Parameters for dataset svg's.  
